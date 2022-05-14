@@ -15,6 +15,7 @@ import javax.persistence.Entity;
 @NoArgsConstructor
 @Entity
 public class User extends BaseEntity<Long> {
+
     @Column(unique = true)
     private String username;
     private String password;

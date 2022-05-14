@@ -19,6 +19,10 @@ public class BaseEntity<ID extends Serializable> {
         this.id = id;
     }
 
+    public void setId(ID id) {
+        this.id = id;
+    }
+
     public ID getId() {
         return id;
     }

@@ -5,8 +5,30 @@
     <title>Index</title>
 </head>
 <body>
-<ul>
-    <li th:each="user : ${users}" th:text="${user.getUsername()} + ' , ' + ${user.getPassword()}"></li>
-</ul>
+<div th:switch="${users}">
+    <h2 th:case="null">No users yet!</h2>
+    <div th:case="*">
+        <h2>Users</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>username</th>
+                <th>password</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.username}"></td>
+                <td th:text="${user.password}"></td>
+                <td><a th:href="@{/edit/{id}(id=${user.id})}">Edit</a></td>
+                <td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a th:href="@{/signup}">Add a new user</a></p>
+</div>
 </body>
 </html>

@@ -40,7 +40,8 @@ public class BaseServiceImpl<E extends BaseEntity<ID>, ID extends Serializable
 
     @Override
     public E findById(ID id) {
-        return repository.findById(id).orElse(null);
+        return repository.findById(id)
+           .orElseThrow(() -> new IllegalArgumentException("Invalid  Id:" + id));
     }
 
     @Override
