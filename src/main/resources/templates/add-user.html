@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"  lang="en">
 <head>
     <meta charset="UTF-8">
     <title>A</title>
@@ -8,11 +8,11 @@
 <body>
 <form action="#" th:action="@{/adduser}" th:object="${user}" method="post">
     <label for="username">Username</label>
-    <input type="text" th:field="*{user.username}" id="username" placeholder="Username">
-    <span th:if="${#fields.hasErrors('username')}" th:errors="*{user.username}"></span>
+    <input type="text" th:field="*{username}" id="username" placeholder="Username">
+    <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
     <label for="password">Password</label>
-    <input type="text" th:field="*{user.password}" id="password" placeholder="Password">
-    <span th:if="${#fields.hasErrors('password')}" th:errors="*{user.password}"></span>
+    <input type="text" th:field="*{password}" id="password" placeholder="Password">
+    <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
     <input type="submit" value="Add User">
 </form>
 </body>
