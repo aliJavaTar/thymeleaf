@@ -15,6 +15,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+
 public class UserController {
     private final UserService userService;
 
@@ -23,8 +24,15 @@ public class UserController {
         this.userService = userService;
     }
 
+    @GetMapping("/")
+    public String firstPage(Model model) {
+        List<User> users = userService.findAll();
+        model.addAttribute("users", users);
+        return "index";
+    }
+
     @GetMapping("/signup")
-    public String showSignUpForm() {
+    public String showSignUpForm(User user) {
         return "add-user";
     }
 
@@ -33,35 +41,35 @@ public class UserController {
         if (result.hasErrors()) {
             return "add-user";
         }
-        user = userService.create(user);
+        userService.create(user);
         model.addAttribute("user", user);
-        return "redirect:/index";
+        return "redirect:/";
     }
-
-
-    @GetMapping("/index")
-    public String index(Model model) {
-        model.addAttribute("users", userService.findAll());
-        return "index";
-    }
-
 
     @PostMapping("/update/{id}")
     public String updateUser(@PathVariable("id") long id, @Valid User user,
-                             BindingResult result,Model model) {
+                             BindingResult result, Model model) {
         if (result.hasErrors())
             return "update-user";
         user.setId(userService.findById(id).getId());
         userService.create(user);
         user = userService.create(user);
         model.addAttribute("user", user);
-        return "redirect:/index";
+        return "redirect:/";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteUser(@PathVariable("id") long id) {
         User user = userService.findById(id);
         userService.delete(user);
-        return "redirect:/index";
+        return "redirect:/";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String showUpdateForm(@PathVariable("id") long id, Model model) {
+        User user = userService.findById(id);
+        model.addAttribute("user", user);
+
+        return "update-user";
     }
 }

@@ -2,16 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org"  lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>A</title>
-
+    <title>ADD_USER</title>
 </head>
 <body>
 <form action="#" th:action="@{/adduser}" th:object="${user}" method="post">
     <label for="username">Username</label>
-    <input type="text" th:field="*{username}" id="username" placeholder="Username">
+    <input type="text" th:field="*{username}" name="username" id="username" placeholder="Username">
     <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
     <label for="password">Password</label>
-    <input type="text" th:field="*{password}" id="password" placeholder="Password">
+    <input type="text" th:field="*{password}" name="password" id="password" placeholder="Password">
     <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
     <input type="submit" value="Add User">
 </form>

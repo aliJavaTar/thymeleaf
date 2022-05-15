@@ -5,7 +5,7 @@ import ir.maktab.last.entity.base.BaseEntity;
 import java.io.Serializable;
 import java.util.List;
 
-public interface BaseService<E extends BaseEntity<ID>, ID extends Serializable> {
+public interface BaseService<E extends BaseEntity<ID> , ID extends Serializable> {
 
     E create(E e);
 
@@ -18,6 +18,5 @@ public interface BaseService<E extends BaseEntity<ID>, ID extends Serializable> 
     E findById(ID id);
 
     List<E> findAll();
-
 
 }

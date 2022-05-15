@@ -7,7 +7,7 @@ import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 
 @MappedSuperclass
-public class BaseEntity<ID extends Serializable> {
+public class BaseEntity <ID extends Serializable> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private ID id;
